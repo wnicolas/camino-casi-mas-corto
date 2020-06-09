@@ -5,6 +5,8 @@ while True:
 		break
 
 	listaVertices=[]
+	listaTemporal=[]
+	listaFinal=[]
 	n=""
 	m=""
 	c=0
@@ -53,8 +55,11 @@ while True:
 
 	print(s,d)
 
+	#listaTemporal[s]=0
+	#listaFinal[s]=0
+
 	#Asignación de los caminos establecidos
-	listaAristas=[]
+	diccionarioAristas={}
 	for i in range(m):
 		u=""
 		v=""
@@ -76,12 +81,54 @@ while True:
 			else :
 				p=p+i
 		
-		arista=u+" "+v+" "+p
-		listaAristas.append(arista)
-		arista=""
+		diccionarioAristas[u+" "+v]=int(p)
+
+	#Algoritmo#################################
+	verticeActivo=str(s)
+	diccionarioAdyacentes={}
+	aux=""
+	contador=0
+	aux2=""
 
 
-print(listaAristas[:])
+	print(diccionarioAristas.keys())
+	
+	#Mira si un vértice es adyacente
+	for i in diccionarioAristas.keys():	
+		aux=""
+		for j in i:
+			aux2=""
+			contador=0
+
+			if j!=" ":
+				aux=aux+j
+			elif aux==verticeActivo:
+
+				for k in i:
+					if k==" ":
+						contador+=1
+					elif contador==1:
+						aux2=aux2+k
+				diccionarioAdyacentes[aux2]=diccionarioAristas[i]
+				print(i + " Es un vértice adyacente")
+				break
+			else:
+				print(i+ " no es adyacente")
+				break
+		print(aux2)
+		
+	
+	print(diccionarioAdyacentes)		
+
+
+
+
+	#Algoritmo#################################
+
+
+
+
+print(diccionarioAristas)
 
 
 	
