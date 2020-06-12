@@ -55,8 +55,15 @@ while True:
 
 	print(s,d)
 
-	#listaTemporal[s]=0
-	#listaFinal[s]=0
+	for i in range(n-1):
+		listaTemporal.append(0)
+		listaFinal.append(0)
+
+	listaTemporal.insert(s,0)
+	listaFinal.insert(s,0)
+
+	print(listaTemporal[:])
+	print(listaFinal[:])
 
 	#Asignación de los caminos establecidos
 	diccionarioAristas={}
@@ -110,15 +117,25 @@ while True:
 					elif contador==1:
 						aux2=aux2+k
 				diccionarioAdyacentes[aux2]=diccionarioAristas[i]
+				listaTemporal[int(aux2)]=diccionarioAristas[i]
 				print(i + " Es un vértice adyacente")
 				break
 			else:
 				print(i+ " no es adyacente")
 				break
-		print(aux2)
-		
+
+	menor=0
+	for i in range(n-1):
+		if listaTemporal[i]>0:
+			
+
+	print(menor)
+
+
 	
-	print(diccionarioAdyacentes)		
+	print(diccionarioAdyacentes)
+	print(listaTemporal[:])	
+
 
 
 
