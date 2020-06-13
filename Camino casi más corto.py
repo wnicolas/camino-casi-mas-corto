@@ -1,4 +1,14 @@
 def algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal):
+	listaCompleta=False
+	contadorCero=0
+	for i in listaFinal:
+		if i==0:
+			contadorCero+=1
+		
+	if contadorCero==1:
+		listaCompleta=True
+
+
 	verticeActivo=str(s)
 	aux=""
 	contador=0
@@ -6,7 +16,7 @@ def algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTempora
 	menor=0
 	indexMenor=None
 
-	
+
 
 	for i in diccionarioAristas.keys():	
 		aux=""
@@ -42,6 +52,11 @@ def algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTempora
 	print("El menor es: "+ str(menor))
 			
 	listaFinal[indexMenor]=menor
+
+	if listaCompleta:
+		print("Terminó")
+	else:
+		algoritmo(indexMenor,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal)
 
 
 
