@@ -1,7 +1,7 @@
-def algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal):
+def algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal,verticeInicial):
 	listaCompleta=False
 	contadorCero=0
-	for i in listaFinal:
+	for i in listaTemporal:
 		if i==0:
 			contadorCero+=1
 		
@@ -47,16 +47,44 @@ def algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTempora
 			else:
 				print(i+ " no es adyacente")
 				break
-
-	print("El índice es: " + str(indexMenor))
-	print("El menor es: "+ str(menor))
 			
-	listaFinal[indexMenor]=menor
+	#listaFinal[indexMenor]=menor
+
+
+	print(listaTemporal[:])
+	
+
+
+
+	pesoMenor=None
+	nuevoVertice=None
+	posicion=0
+
+	for i in listaTemporal:
+		if listaFinal[posicion]==None:
+			if i!=0:
+				if pesoMenor==None:
+					pesoMenor=i
+					nuevoVertice=posicion
+				else:					
+					if i<pesoMenor:
+						pesoMenor=i
+						nuevoVertice=posicion
+		else:
+			nuevoVertice=indexMenor
+		posicion+=1
+
+	listaFinal[nuevoVertice]=listaTemporal[nuevoVertice]
+	print(listaFinal[:])
+
+
+
+	print("El nuevoVertice es: " + str(nuevoVertice))
 
 	if listaCompleta:
 		print("Terminó")
 	else:
-		algoritmo(indexMenor,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal)
+		algoritmo(nuevoVertice,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal,verticeInicial)
 
 
 
@@ -123,7 +151,7 @@ while True:
 
 	for i in range(n-1):#Iniciliza las listas Temporal y Final con ceros
 		listaTemporal.append(0)
-		listaFinal.append(0)
+		listaFinal.append(None)
 
 	listaTemporal.insert(s,0)
 	listaFinal.insert(s,0)#En las posiciones S de las listas temporal y final pone un cero
@@ -162,7 +190,7 @@ while True:
 	diccionarioAdyacentes={}
 	
 	
-	algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal)
+	algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal,s)
 
 	
 	print(diccionarioAdyacentes)
