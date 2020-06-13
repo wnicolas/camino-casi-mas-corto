@@ -1,3 +1,57 @@
+def algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal):
+	verticeActivo=str(s)
+	aux=""
+	contador=0
+	aux2=""
+	menor=0
+	indexMenor=None
+
+	
+
+	for i in diccionarioAristas.keys():	
+		aux=""
+		for j in i:
+			aux2=""
+			contador=0
+
+			if j!=" ":
+				aux=aux+j
+			elif aux==verticeActivo:
+
+				for k in i:
+					if k==" ":
+						contador+=1
+					elif contador==1:
+						aux2=aux2+k
+				diccionarioAdyacentes[aux2]=diccionarioAristas[i]
+				listaTemporal[int(aux2)]=diccionarioAristas[i]
+				if menor==0:
+					menor=diccionarioAristas[i]
+					indexMenor=int(aux2)
+				else:
+					if diccionarioAristas[i]<menor:
+						menor=diccionarioAristas[i]
+						indexMenor=int(aux2)
+				print(i + " Es un vértice adyacente")
+				break
+			else:
+				print(i+ " no es adyacente")
+				break
+
+	print("El índice es: " + str(indexMenor))
+	print("El menor es: "+ str(menor))
+			
+	listaFinal[indexMenor]=menor
+
+
+
+
+
+
+
+
+
+
 while True:
 	#Asignación de los valores de n y m. Creación de la lista de vértices, temporal y final
 	entrada=input("Ingrese N y M: ")
@@ -90,56 +144,10 @@ while True:
 
 	############### Fin de asignación de las aristas #####################################
 
-
-	##################### Inicio algoritmo #################################
-
-	verticeActivo=str(s)
 	diccionarioAdyacentes={}
-	aux=""
-	contador=0
-	aux2=""
-	menor=0
-	indexMenor=None
-
-	#print(diccionarioAristas.keys()) Imprime las claves del diccionarioAristas
 	
-	#Mira si un vértice es adyacente
-	for i in diccionarioAristas.keys():	
-		aux=""
-		for j in i:
-			aux2=""
-			contador=0
-
-			if j!=" ":
-				aux=aux+j
-			elif aux==verticeActivo:
-
-				for k in i:
-					if k==" ":
-						contador+=1
-					elif contador==1:
-						aux2=aux2+k
-				diccionarioAdyacentes[aux2]=diccionarioAristas[i]
-				listaTemporal[int(aux2)]=diccionarioAristas[i]
-				if menor==0:
-					menor=diccionarioAristas[i]
-					indexMenor=int(aux2)
-				else:
-					if diccionarioAristas[i]<menor:
-						menor=diccionarioAristas[i]
-						indexMenor=int(aux2)
-				print(i + " Es un vértice adyacente")
-				break
-			else:
-				print(i+ " no es adyacente")
-				break
-
-	print("El índice es: " + str(indexMenor))
-	print("El menor es: "+ str(menor))
-			
-	listaFinal[indexMenor]=menor
 	
-
+	algoritmo(s,diccionarioAdyacentes,diccionarioAristas,listaFinal,listaTemporal)
 
 	
 	print(diccionarioAdyacentes)
